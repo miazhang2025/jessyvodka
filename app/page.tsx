@@ -56,7 +56,7 @@ export default function Home() {
             className="transition-transform duration-300 ease-out"
             style={{ transform: `translate(${mousePos.x * 10}px, ${mousePos.y * 10}px)` }}
           >
-            <p className="text-6xl md:text-7xl font-black text-white tracking-wider drop-shadow-2xl whitespace-nowrap" style={{ fontFamily: 'var(--font-bayon)' }}>
+            <p className="text-6xl md:text-7xl font-regular text-white tracking-wider drop-shadow-2xl whitespace-nowrap" style={{ fontFamily: 'var(--font-bayon)' }}>
               JESSYWANG.VODKA
             </p>
           </div>
