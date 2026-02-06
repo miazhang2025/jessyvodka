@@ -10,6 +10,7 @@ import Image from 'next/image';
 export default function Home() {
   const [drinkTrigger, setDrinkTrigger] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [vodkaCount, setVodkaCount] = useState<number | null>(null);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -22,8 +23,25 @@ export default function Home() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const handleVodkaDragged = () => {
+  useEffect(() => {
+    // Fetch initial count
+    fetch('/api/vodka-count')
+      .then(res => res.json())
+      .then(data => setVodkaCount(data.count))
+      .catch(err => console.error('Failed to fetch vodka count:', err));
+  }, []);
+
+  const handleVodkaDragged = async () => {
     setDrinkTrigger(true);
+    
+    // Increment the count
+    try {
+      const res = await fetch('/api/vodka-count', { method: 'POST' });
+      const data = await res.json();
+      setVodkaCount(data.count);
+    } catch (err) {
+      console.error('Failed to increment vodka count:', err);
+    }
   };
 
   const handleDrinkComplete = () => {
@@ -58,6 +76,9 @@ export default function Home() {
           >
             <p className="text-6xl md:text-7xl font-regular text-white tracking-wider drop-shadow-2xl whitespace-nowrap" style={{ fontFamily: 'var(--font-bayon)' }}>
               JESSYWANG.VODKA
+            </p>
+            <p className="text-sm text-white mt-2 tracking-wide text-center" style={{ fontFamily: 'var(--font-ibm-plex-mono)' }}><span className="text-[#0000FF]">
+              {vodkaCount !== null ? vodkaCount : '...'} bottle{vodkaCount !== 1 ? 's' : ''} </span>of vodka has been consumed.
             </p>
           </div>
         </div>
