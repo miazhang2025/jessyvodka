@@ -151,7 +151,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-10 left-0 right-0 text-white z-40">
+      <nav className="fixed top-5 left-0 right-0 text-white z-40">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <ul className="flex justify-center gap-12">
             <li>
