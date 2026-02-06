@@ -76,9 +76,9 @@ export default function VodkaBar({ onVodkaDragged }: VodkaBarProps) {
       {/* Bar Container */}
       <div
         ref={containerRef}
-        className="fixed right-0 top-1/2 -translate-y-1/2 bg-gray-200/30 backdrop-blur-sm rounded-l-3xl p-2 md:p-4 z-30 border-2 border-white/40"
+        className="fixed right-0 top-1/2 -translate-y-1/2 bg-gray-200/30 backdrop-blur-sm rounded-l-3xl p-4 z-30 border-2 border-white/40"
       >
-        <div className="flex flex-col gap-3 md:gap-6 items-center max-h-[400px] md:max-h-[600px] py-2 md:py-4">
+        <div className="flex flex-col gap-6 items-center max-h-[600px] py-4">
           {vodkas.map((vodka, index) => (
             <div
               key={index}
@@ -86,7 +86,7 @@ export default function VodkaBar({ onVodkaDragged }: VodkaBarProps) {
               className="cursor-grab active:cursor-grabbing hover:scale-110 transition-transform relative"
               style={{ zIndex: 9999 }}
             >
-              <div className="relative w-14 h-20 md:w-20 md:h-32 rounded-xl p-1 md:p-2">
+              <div className="relative w-20 h-32 rounded-xl p-2 ">
                 <Image
                   src={vodka.src}
                   alt={vodka.alt}

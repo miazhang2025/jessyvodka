@@ -151,14 +151,14 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 text-white z-40">
+      <nav className="fixed top-10 left-0 right-0 text-white z-40">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <ul className="flex justify-center gap-12">
             <li>
               <button
                 onClick={() => handleNavClick('about')}
-                className="text-lg font-medium hover:text-gray-300 transition-colors uppercase tracking-wide"
-                style={{ fontFamily: 'var(--font-ibm-plex-mono)' }}
+                className="text-lg font-normal hover:text-gray-300 transition-colors uppercase tracking-wide"
+                style={{ fontFamily: 'var(--font-ibm-plex-mono)', letterSpacing: '0.1em' }}
               >
                 About
               </button>
@@ -166,8 +166,8 @@ export default function Navbar() {
             <li>
               <button
                 onClick={() => handleNavClick('drink')}
-                className="text-lg font-medium hover:text-gray-300 transition-colors uppercase tracking-wide"
-                style={{ fontFamily: 'var(--font-ibm-plex-mono)' }}
+                className="text-lg font-normal hover:text-gray-300 transition-colors uppercase tracking-wide"
+                style={{ fontFamily: 'var(--font-ibm-plex-mono)', letterSpacing: '0.1em' }}
               >
                 Buy Me a Drink
               </button>
@@ -175,8 +175,8 @@ export default function Navbar() {
             <li>
               <button
                 onClick={() => handleNavClick('contact')}
-                className="text-lg font-medium hover:text-gray-300 transition-colors uppercase tracking-wide"
-                style={{ fontFamily: 'var(--font-ibm-plex-mono)' }}
+                className="text-lg font-normal hover:text-gray-300 transition-colors uppercase tracking-wide"
+                style={{ fontFamily: 'var(--font-ibm-plex-mono)', letterSpacing: '0.1em' }}
               >
                 Contact
               </button>
