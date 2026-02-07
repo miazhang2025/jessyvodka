@@ -55,6 +55,8 @@ export default function CharacterSequence({ onDrinkTrigger, onDrinkComplete }: C
         return '/drinking.png';
       case 'thumbsup':
         return '/thumbsup.png';
+      case 'idle':
+        return '/idle.png';
       default:
         return '/idle.png';
     }

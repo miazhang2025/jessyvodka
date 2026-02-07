@@ -34,6 +34,10 @@ export default function Home() {
   const handleVodkaDragged = async () => {
     setDrinkTrigger(true);
     
+    // Play drinking sound
+    const audio = new Audio('/drink.wav');
+    audio.play().catch(err => console.error('Failed to play audio:', err));
+    
     // Increment the count
     try {
       const res = await fetch('/api/vodka-count', { method: 'POST' });
