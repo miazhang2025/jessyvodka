@@ -1,31 +1,29 @@
 import { NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { Redis } from '@upstash/redis';
 
-const DATA_FILE = path.join(process.cwd(), 'data', 'vodka-count.json');
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL || '',
+  token: process.env.UPSTASH_REDIS_REST_TOKEN || '',
+});
 
-async function ensureDataFile() {
+const COUNTER_KEY = 'vodka-count';
+
+export async function GET() {
   try {
-    await fs.access(DATA_FILE);
-  } catch {
-    // Create directory and file if they don't exist
-    await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
-    await fs.writeFile(DATA_FILE, JSON.stringify({ count: 0 }));
+    const count = await redis.get<number>(COUNTER_KEY) ?? 0;
+    return NextResponse.json({ count });
+  } catch (error) {
+    console.error('Failed to get count:', error);
+    return NextResponse.json({ count: 0 });
   }
 }
 
-export async function GET() {
-  await ensureDataFile();
-  const data = await fs.readFile(DATA_FILE, 'utf-8');
-  const { count } = JSON.parse(data);
-  return NextResponse.json({ count });
-}
-
 export async function POST() {
-  await ensureDataFile();
-  const data = await fs.readFile(DATA_FILE, 'utf-8');
-  const { count } = JSON.parse(data);
-  const newCount = count + 1;
-  await fs.writeFile(DATA_FILE, JSON.stringify({ count: newCount }));
-  return NextResponse.json({ count: newCount });
+  try {
+    const count = await redis.incr(COUNTER_KEY);
+    return NextResponse.json({ count });
+  } catch (error) {
+    console.error('Failed to increment count:', error);
+    return NextResponse.json({ count: 0 }, { status: 500 });
+  }
 }

@@ -74,11 +74,13 @@ export default function Home() {
             className="transition-transform duration-300 ease-out"
             style={{ transform: `translate(${mousePos.x * 10}px, ${mousePos.y * 10}px)` }}
           >
-            <p className="text-6xl md:text-7xl font-regular text-white tracking-wider drop-shadow-2xl whitespace-nowrap" style={{ fontFamily: 'var(--font-bayon)' }}>
-              JESSYWANG.VODKA
+            <p className="text-center text-6xl md:text-7xl font-regular text-white tracking-wider drop-shadow-2xl whitespace-nowrap" style={{ fontFamily: 'var(--font-bayon)' }}>
+              JESSYWANG<br className="md:hidden" />.VODKA
             </p>
-            <p className="text-sm text-white mt-2 tracking-wide text-center" style={{ fontFamily: 'var(--font-ibm-plex-mono)' }}><span className="text-[#0000FF]">
-              {vodkaCount !== null ? vodkaCount : '...'} bottle{vodkaCount !== 1 ? 's' : ''} </span>of vodka has been consumed.
+            <p className="text-sm text-white mt-2 tracking-wide text-center" style={{ fontFamily: 'var(--font-ibm-plex-mono)' }}>
+              <span className="text-[#0000FF]">{vodkaCount !== null ? vodkaCount : '...'} bottle{vodkaCount !== 1 ? 's' : ''}</span>
+              <br className="md:hidden" />
+              <span className="hidden md:inline"> </span>of vodka has been consumed.
             </p>
           </div>
         </div>
